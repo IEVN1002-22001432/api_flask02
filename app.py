@@ -25,6 +25,17 @@ def about():
         return render_template('calculos.html', res=res, numero1=numero1, numero2=numero2)
     return render_template('calculos.html')
 
+@app.route('/distancia', methods=['GET', 'POST'])
+def about():
+    if request.method == 'POST':
+        x1 = request.form['x1']
+        x2 = request.form['x2']
+        y1 = request.form['y1']
+        y2 = request.form['y2']
+        resultado = math.sqrt(pow((x2-x1), 2) + pow((y2-y1), 2))
+        return render_template('distancia.html', resultado=resultado)
+    return  render_template('distancia.html')
+
 @app.route('/user/<string:user>')
 def user(user):
     return f"Hello, {user}!"

@@ -1,0 +1,16 @@
+{% extends "layout.html"%}
+{%import "_macros.html" as datos_macro%}
+    {%block container%}
+    <h1>Opera Bas</h1>
+
+    <form action="" method="post">
+        {{ datos_macro.datos('x1', 'Ingrese el valor de x1') }}
+        {{ datos_macro.datos('x2', 'Ingrese el valor de x2') }}
+        {{ datos_macro.datos('y1', 'Ingrese el valor de y1') }}
+        {{ datos_macro.datos('y2', 'Ingrese el valor de y2') }}
+
+        <button type="submit" class="btn btn-primary">Calcular</button>
+    </form>
+
+    <h1>La distancia entre ambos puntos es {{resultado}}</h1>
+{%endblock%}
