@@ -1,0 +1,90 @@
+{%extends "layout.html"%}
+{%import "macro.html" as macro%}
+
+{%block container%}
+<form action="" method="post" novalidate>
+    <div class="container">
+        <div class="row p-4 bg-primary">
+            <div class="col-4">
+                {{macro.campos(form.nombre, deshabilitarBtns)}}
+            </div>
+            <div class="col-4">
+                {{macro.campos(form.direccion, deshabilitarBtns)}}
+            </div>
+            <div class="col-4">
+                {{macro.campos(form.telefono, deshabilitarBtns)}}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row bg-info">
+            <fieldset class="col-4 border border-5 p-3 rounded m-2 border-warning-subtle bg-warning">
+                {{macro.campos(form.tamano)}}
+            </fieldset>
+            <fieldset class="col-4 border border-5 p-3 rounded m-2 border-warning-subtle bg-warning">
+                <p class="fw-bold">Ingredientes</p>
+                <div class="d-flex flex-row">
+                    {{macro.ingredientes(form.jamon)}}
+                </div>
+                <div class="d-flex flex-row">
+                    {{macro.ingredientes(form.pina)}}
+                </div>
+                <div class="d-flex flex-row">
+                    {{macro.ingredientes(form.champinones)}}
+                </div>
+            </fieldset>
+            <div class="col-3">
+                <div class="mt-3">
+                    {{macro.campos(form.noPizzas)}}
+                </div>
+                <button type="submit" name="boton" value="Agregar" class="btn btn-primary mt-3">Agregar</button>        
+            </div>
+        </div>
+    </div>
+    
+    <div class="container bg-info">
+        <div class="row p-3">
+            <div class="col-6">
+                <table class="table table-warning table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Tamaño</th>
+                            <th>Ingredientes</th>
+                            <th>Numero de pizzas</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {%for pedido in pedidoActual%}
+                        <tr>
+                            <td>*</td>
+                            <td>{{pedido["tamano"]}}</td>
+                            <td>{{pedido["ingredientes"]}}</td>
+                            <td>{{pedido["noPizzas"]}}</td>
+                            <td>${{pedido["subtotal"]}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                <div class="row gx-5 text-center">
+                    <div class="col">
+                        <button type="submit" name="boton" value="Quitar" class="btn btn-primary mt-3">Quitar</button>        
+                    </div>
+                    <div class="col">
+                        <button type="submit" name="boton" value="Terminar" class="btn btn-primary mt-3">Terminar</button>        
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 p-3 bg-primary mb-3 fw-bold text-black">
+                {%for venta in ventas%}
+                <p>{{venta["nombre"]}} total: ${{venta["total"]}}</p>
+                {%endfor%}
+                <p>Ventas totales del día: ${{total}}</p>
+            </div>
+        </div>
+    </div>
+</form>
+
+{%endblock%}

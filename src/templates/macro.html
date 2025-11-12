@@ -1,0 +1,20 @@
+{%macro campos(field, disable=False)%}
+        <p class="fw-bold">{{field.label}}</p>
+        {{field(readonly=disable, **kwargs) | safe}}
+    {%if field.errors%}
+    <ul>
+        {%for error in field.errors%}
+        <li style="color: red">{{error}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+{%endmacro%}
+
+{%macro ingredientes(field)%}
+<div class="ms-2">
+    {{field(**kwargs) | safe}}
+</div>
+<div class="ms-3">
+    {{field.label}}
+</div>
+{%endmacro%}
